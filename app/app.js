@@ -14,5 +14,6 @@ app.set('views', './src/views') // 뷰 단을 분리할 것임. 뷰 단의 경�
 app.set('view engine', 'ejs') // ejs 엔진을 사용해서 뷰단을 처리 (ejs 확장자)
 
 app.use('/', home); // use -> 미들웨어를 등록하는 메서드
+app.use(express.static(`${__dirname}/src/public`))
 
 module.exports = app;
