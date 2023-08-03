@@ -1,10 +1,8 @@
 'use strict';
 
-// 아이디 데이터베이스
-const user = {
-    id: ['서지석'],
-    psword: ['1111']
-}
+const UserStorage = require('../../models/UserStorage')
+const users = UserStorage.getUsers('id', 'psword');
+
 
 // 렌더할 페이지가 많은 경우, 일일히 render 함수를 작성하기 어렵고, 가시성이 안좋음.
 const output = {
@@ -21,19 +19,18 @@ const process = {
         const id = req.body.id,
             psword = req.body.psword;
         
-        if (user.id.includes(id)) {
-            const idx = user.id.indexOf(id);
-            if (user.psword[idx] === psword) {
-                return res.json({
-                    success: true,
-                });
+        const response = {}; // 로그인 결과를 담는 객체
+        if (users.id.includes(id)) {
+            const idx = users.id.indexOf(id);
+            if (users.psword[idx] === psword) {
+                response.success = true;
+                return res.json(response);
             };
-        };
-
-        return res.json({
-            success: false,
-            msg: '로그인에 실패하셨습니다',
-        });
+        }
+        
+        response.success = false;
+        response.msg = '로그인에 실패하셨습니다'
+        return res.json(response);
     },
 };
 
