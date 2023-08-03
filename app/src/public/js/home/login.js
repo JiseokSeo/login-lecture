@@ -4,11 +4,13 @@
 
 const id = document.querySelector("#id"), // #: id 태그의 값을 가져옴
     psword = document.querySelector('#psword'),
-    loginBtn = document.querySelector('button'); // 그냥 넣으면 tag 전체를 가져옴
+    loginBtn = document.querySelector('#login-button'); // 그냥 넣으면 tag 전체를 가져옴
 
 loginBtn.addEventListener('click', login);
 
 function login() {
+    console.log('로그인 시도');
+
     const req = {
         id: id.value,
         psword: psword.value,

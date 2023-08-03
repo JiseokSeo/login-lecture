@@ -16,6 +16,8 @@ const output = {
 
 const process = {
     login: (req, res) => {
+        console.log('로그인 시도');
+
         const id = req.body.id,
             psword = req.body.psword;
         
