@@ -9,18 +9,16 @@ const id = document.querySelector("#id"), // #: id 태그의 값을 가져옴
 loginBtn.addEventListener('click', login);
 
 function login() {
-    console.log('로그인 버튼 클릭');
     const req = {
         id: id.value,
         psword: psword.value,
     };
-    console.log(req);
 
-    fetch('/login', {
+    fetch('/login', { // fetch({API경로}, {전달대상}).then(res) => {콜백}
         method: 'POST',
         headers:{
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(req)
-    }) // fetch({API경로}, {전달대상})
+    }).then((res) => res.json()).then((res) => console.log(res))
 };
